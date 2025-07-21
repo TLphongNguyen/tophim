@@ -7,7 +7,7 @@ class ServicesBase {
   constructor(baseURL: string, onUnauthenticated: () => void) {
     const service = axios.create({
       headers: {
-        csrf: "token",
+        // csrf: "token",
         "Content-Type": "application/json",
       },
       baseURL,
@@ -21,10 +21,18 @@ class ServicesBase {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   requestSuccess = (config: any) => {
     const token = localStorage.getItem("token");
-    // const token = Cookies.get('token')
-    if (token) {
+
+    const skipAuthHosts = ["https://phimapi.com"];
+    const isSkip = skipAuthHosts.some(
+      (host) =>
+        (config.baseURL || "")?.startsWith(host) ||
+        (config.url || "")?.startsWith(host)
+    );
+
+    if (token && !isSkip) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+
     return config;
   };
 

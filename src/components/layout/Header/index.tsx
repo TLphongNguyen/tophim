@@ -1,8 +1,46 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
+"use client";
 import { FaSearch, FaBell, FaCaretDown } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import CustomDropdown from "./customDropdown";
+import CategoryServices from "@/services/category/categoryServices";
 const Header = () => {
+  const [categories, setCategories] = useState([]);
+  const [nations, setNations] = useState([]);
+
+  const categoryServices = new CategoryServices(
+    process.env.NEXT_PUBLIC_API_URL as string,
+    () => {
+      console.error("User is unauthenticated");
+    }
+  );
+  const fetchDataCategory = async () => {
+    try {
+      const response: any = await categoryServices.getCategoryList();
+      setCategories(response);
+    } catch (error) {
+      console.error("Failed to fetch categories:", error);
+    }
+  };
+  useEffect(() => {
+    fetchDataCategory();
+  }, []);
+
+  const fetchDataNation = async () => {
+    try {
+      const response: any = await categoryServices.getNationalList();
+      setNations(response);
+    } catch (error) {
+      console.error("Failed to fetch nations:", error);
+    }
+  };
+  useEffect(() => {
+    fetchDataNation();
+  }, []);
   return (
-    <div className="h-[70px] px-8 flex items-center justify-between bg-[#0f111a]">
+    <div className="h-[70px] px-8 flex items-center justify-between bg-[#0f111a] sticky top-0 z-50">
       <div className="logo">
         <img src="/logo.svg" alt="logo" className="h-[46px] w-auto" />
       </div>
@@ -22,30 +60,48 @@ const Header = () => {
       </div>
       <div className="categories">
         <ul className="flex items-center gap-[1rem] justify-between">
-          <li className="text-white px-3 leading-9 cursor-pointer ">
+          <li className="text-white px-3 leading-9 cursor-pointer hover:text-[#FFD875]">
             <span className="">Chủ đề</span>
           </li>
-          <li className="text-white px-3 leading-9 cursor-pointer flex items-center gap-2 ">
-            <span className="">Thể loại</span>
-            <FaCaretDown className="text-white text-10" />
-          </li>
-          <li className="text-white px-3 leading-9 cursor-pointer ">
+          <CustomDropdown
+            items={categories}
+            height="fit-content"
+            width="500px"
+            bgColor="#0f111af2"
+            trigger={
+              <li className="text-white px-3 leading-9 cursor-pointer flex items-center gap-2 ">
+                <span className="">Thể loại</span>
+                <FaCaretDown className="text-white text-10" />
+              </li>
+            }
+          />
+
+          <li className="text-white px-3 leading-9 cursor-pointer hover:text-[#FFD875]">
             <span className="">Phim lẻ</span>
           </li>
-          <li className="text-white px-3 leading-9 cursor-pointer ">
+          <li className="text-white px-3 leading-9 cursor-pointer hover:text-[#FFD875]">
             <span className="">Phim bộ</span>
           </li>
-          <li className="text-white px-3 leading-9 cursor-pointer ">
+          <li className="text-white px-3 leading-9 cursor-pointer hover:text-[#FFD875]">
             <span className="">Xem chung</span>
           </li>
-          <li className="text-white px-3 leading-9 cursor-pointer flex items-center gap-2 ">
-            <span className="">Quốc gia</span>
-            <FaCaretDown className="text-white text-10" />
-          </li>
-          <li className="text-white px-3 leading-9 cursor-pointer ">
+          <CustomDropdown
+            items={nations}
+            height="fit-content"
+            width="500px"
+            bgColor="#0f111af2"
+            trigger={
+              <li className="text-white px-3 leading-9 cursor-pointer flex items-center gap-2 ">
+                <span className="">Quốc gia</span>
+                <FaCaretDown className="text-white text-10" />
+              </li>
+            }
+          />
+
+          <li className="text-white px-3 leading-9 cursor-pointer hover:text-[#FFD875]">
             <span className="">Diễn viên</span>
           </li>
-          <li className="text-white px-3 leading-9 cursor-pointer ">
+          <li className="text-white px-3 leading-9 cursor-pointer hover:text-[#FFD875]">
             <span className="">Lịch chiếu</span>
           </li>
         </ul>
