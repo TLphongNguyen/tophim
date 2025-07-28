@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 const Topic = () => {
   return (
-    <div className="mx-[50px] ">
+    <div className="">
       <div className="mb-[20px]">
         <h3 className="text-[28px] leading-[140%] font-[600] text-white">
           Bạn đang quan tâm gì?
