@@ -1,0 +1,51 @@
+[
+  {
+    "id": "marvel",
+    "name": "Marvel",
+    "color": "#5B6DF6",
+    "description": "Xem chủ đề",
+    "more": false
+  },
+  {
+    "id": "4k",
+    "name": "4K",
+    "color": "#9393b9",
+    "description": "Xem chủ đề",
+    "more": false
+  },
+  {
+    "id": "sitcom",
+    "name": "Sitcom",
+    "color": "#4BAA97",
+    "description": "Xem chủ đề",
+    "more": false
+  },
+  {
+    "id": "long-tieng-cuc-manh",
+    "name": "Lồng Tiếng\nCực Mạnh",
+    "color": "#A49EDB",
+    "description": "Xem chủ đề",
+    "more": false
+  },
+  {
+    "id": "xuyen-khong",
+    "name": "Xuyên Không",
+    "color": "#D08C7B",
+    "description": "Xem chủ đề",
+    "more": false
+  },
+  {
+    "id": "co-trang",
+    "name": "Cổ Trang",
+    "color": "#B05C5C",
+    "description": "Xem chủ đề",
+    "more": false
+  },
+  {
+    "id": "more",
+    "name": "+4 chủ đề",
+    "color": "#5C5C6B",
+    "description": "Xem chủ đề",
+    "more": true
+  }
+]

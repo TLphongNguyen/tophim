@@ -27,7 +27,6 @@ const Banner = () => {
     try {
       const response: any = await bannerServices.getTopfilmList();
       setBannerData(response.data.items);
-      // console.log(response.data.items);
     } catch (error) {
       console.error("Error fetching banner data:", error);
     }
@@ -47,7 +46,6 @@ const Banner = () => {
     try {
       const response: any = await bannerServices.getfilmbyslug(slug);
       setDataFilm(response.movie);
-      console.log(response.movie);
     } catch (error) {
       console.error("Error fetching film by slug:", error);
     }
