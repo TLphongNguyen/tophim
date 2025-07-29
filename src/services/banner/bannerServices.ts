@@ -7,7 +7,7 @@ class BannerServices extends ServicesBase {
 
   getTopfilmList() {
     return this.service.get(
-      "/v1/api/danh-sach/phim-le?page=1&sort_field=modified.time&sort_type=desc&limit=5"
+      "/v1/api/danh-sach/phim-chieu-rap?page=1&sort_field=year&sort_type=desc&limit=6"
     );
   }
   getfilmbyslug(slug: string) {

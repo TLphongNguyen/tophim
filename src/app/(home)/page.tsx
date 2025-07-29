@@ -1,6 +1,7 @@
-import Banner from "@/components/base/home/banner";
-import Topic from "@/components/base/home/topic";
-import ListFilmNew from "@/components/base/home/listFilmNew";
+import Banner from "@/components/home/banner";
+import Topic from "@/components/home/topic";
+import ListFilmNew from "@/components/home/listFilmNew";
+import ListFilmBo from "@/components/home/listFilmBo";
 
 const home = () => {
   return (
@@ -9,6 +10,7 @@ const home = () => {
       <div className="content mx-[50px] flex flex-col gap-[50px]">
         <Topic />
         <ListFilmNew />
+        <ListFilmBo />
       </div>
     </div>
   );
