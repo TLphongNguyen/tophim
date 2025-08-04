@@ -17,7 +17,7 @@ type Props = {
 
 const FilmSection = ({ title, gradient, films }: Props) => {
   const uniqueId = title.replace(/\s+/g, "-").toLowerCase();
-  console.log(films);
+
   return (
     <div className="flex justify-between items-center gap-[1.2rem] ">
       <div className="intro min-w-[200px] flex flex-col gap-[1.5rem] pr-[1.5rem] pl-[0.5rem]">
@@ -32,7 +32,7 @@ const FilmSection = ({ title, gradient, films }: Props) => {
           <FaAngleRight />
         </div>
       </div>
-      <div className="listfilm max-w-[100%] overflow-x-auto relative">
+      <div className="relative max-w-[1520px] flex-1 ">
         <button
           className={`swiper-button-prev-${uniqueId} absolute left-[-16px] top-[34%] -translate-y-1/2 z-10 w-10 h-10 bg-[#fff] rounded-full flex items-center justify-center text-black hover:bg-[#FFD875] hover:cursor-pointer  transition`}
           style={{ outline: "none", border: "none" }}
@@ -45,51 +45,55 @@ const FilmSection = ({ title, gradient, films }: Props) => {
         >
           <FaAngleRight />
         </button>
-        <Swiper
-          modules={[Navigation]}
-          navigation={{
-            prevEl: `.swiper-button-prev-${uniqueId}`,
-            nextEl: `.swiper-button-next-${uniqueId}`,
-          }}
-          spaceBetween={16}
-          slidesPerView={"auto"}
-          style={{ touchAction: "pan-y" }}
-          className="flex gap-[1.5rem] cursor-pointer"
-        >
-          {films?.map((item, index) => (
-            <SwiperSlide
-              key={index}
-              style={{ width: 288.4 }}
-              className="h-full !flex flex-col gap-[1rem]"
-            >
-              <div className="rounded-[8px] overflow-hidden">
-                <img
-                  src={`https://phimapi.com/image.php?url=https://phimimg.com/${item.thumb_url}`}
-                  alt="anh phim"
-                  className="w-full h-[160px] object-cover"
-                />
-              </div>
-              <div className="px-4 py-3">
-                <h4 className="font-[500] leading-[150%]">
-                  <a
-                    className="no-underline text-white cursor-pointer line-clamp-1"
-                    href="#"
-                  >
-                    {item.name}
-                  </a>
-                </h4>
-                <h4 className="font-[500] leading-[150%]">
-                  <a
-                    className="no-underline text-[#aaa] text-[0.9rem] cursor-pointer line-clamp-1"
-                    href="#"
-                  >
-                    {item.origin_name}
-                  </a>
-                </h4>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        <div className="listfilm max-w-[100%] overflow-x-auto ">
+          <Swiper
+            modules={[Navigation]}
+            navigation={{
+              prevEl: `.swiper-button-prev-${uniqueId}`,
+              nextEl: `.swiper-button-next-${uniqueId}`,
+            }}
+            spaceBetween={16}
+            slidesOffsetBefore={0}
+            slidesOffsetAfter={0}
+            slidesPerView={"auto"}
+            style={{ touchAction: "pan-y" }}
+            className="flex !gap-[1rem] cursor-pointer"
+          >
+            {films?.map((item, index) => (
+              <SwiperSlide
+                key={index}
+                style={{ width: 288.4 }}
+                className="h-full !flex flex-col gap-[1rem]"
+              >
+                <div className="rounded-[8px] overflow-hidden">
+                  <img
+                    src={`https://phimapi.com/image.php?url=https://phimimg.com/${item.thumb_url}`}
+                    alt="anh phim"
+                    className="w-full h-[160px] object-cover"
+                  />
+                </div>
+                <div className="px-4 py-3">
+                  <h4 className="font-[500] leading-[150%]">
+                    <a
+                      className="no-underline text-white cursor-pointer line-clamp-1"
+                      href="#"
+                    >
+                      {item.name}
+                    </a>
+                  </h4>
+                  <h4 className="font-[500] leading-[150%]">
+                    <a
+                      className="no-underline text-[#aaa] text-[0.9rem] cursor-pointer line-clamp-1"
+                      href="#"
+                    >
+                      {item.origin_name}
+                    </a>
+                  </h4>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
     </div>
   );
